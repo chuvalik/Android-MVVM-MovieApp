@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainScreenRepository {
 
-    suspend fun fetchNewMovies(fetchFromRemote: Boolean): Flow<Resource<List<NewMovieDomain>>>
+    suspend fun fetchNewMovies(): Resource<List<NewMovieDomain>>
 }

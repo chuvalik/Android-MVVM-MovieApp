@@ -3,8 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="24dp"
     android:orientation="vertical"
     tools:context=".feature_main_screen.presentation.MainScreenFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNewMovies"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

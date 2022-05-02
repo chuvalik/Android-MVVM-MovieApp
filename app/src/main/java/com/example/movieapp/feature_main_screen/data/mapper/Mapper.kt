@@ -14,6 +14,16 @@ fun NewMovieDto.toNewMovieEntity(): NewMovieEntity {
     )
 }
 
+fun NewMovieDto.toNewMovieDomain(): NewMovieDomain {
+    return NewMovieDomain(
+        genre = genre,
+        id = id,
+        picture = picture,
+        rating = rating,
+        title = title
+    )
+}
+
 fun NewMovieEntity.toNewMovieDomain(): NewMovieDomain {
     return NewMovieDomain(
         genre = genre,
