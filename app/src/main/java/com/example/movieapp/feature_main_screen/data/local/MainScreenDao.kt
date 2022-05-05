@@ -18,5 +18,5 @@ interface MainScreenDao {
     suspend fun clearNewMoviesFromDatabase()
 
     @Query("SELECT * FROM main_screen_db")
-    fun getAllNewMoviesFromDatabase(): List<NewMovieEntity>
+    suspend fun getAllNewMoviesFromDatabase(): List<NewMovieEntity>
 }

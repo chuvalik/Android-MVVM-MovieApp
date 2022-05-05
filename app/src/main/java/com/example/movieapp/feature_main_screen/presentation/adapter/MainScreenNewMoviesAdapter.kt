@@ -1,4 +1,4 @@
-package com.example.movieapp.feature_main_screen.presentation
+package com.example.movieapp.feature_main_screen.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,17 +10,21 @@ import com.example.movieapp.databinding.AdapterNewMovieBinding
 import com.example.movieapp.feature_main_screen.domain.model.NewMovieDomain
 
 class MainScreenNewMoviesAdapter(
-    glide: RequestManager
+    private val glide: RequestManager
 ) : ListAdapter<NewMovieDomain, MainScreenNewMoviesAdapter.MainScreenNewMoviesViewHolder>(
     NewMoviesDiffCallback
 ) {
 
     class MainScreenNewMoviesViewHolder(
-        private val binding: AdapterNewMovieBinding
+        private val binding: AdapterNewMovieBinding,
+        private val glide: RequestManager
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(newMovie: NewMovieDomain) {
             binding.tvTitle.text = newMovie.title
+            binding.tvGenre.text = newMovie.genre
+            binding.tvMovieRating.text = newMovie.rating
+            glide.load(newMovie.picture).into(binding.ivNewMovie)
         }
     }
 
@@ -30,7 +34,8 @@ class MainScreenNewMoviesAdapter(
     ): MainScreenNewMoviesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return MainScreenNewMoviesViewHolder(
-            AdapterNewMovieBinding.inflate(layoutInflater, parent, false)
+            AdapterNewMovieBinding.inflate(layoutInflater, parent, false),
+            glide
         )
     }
 

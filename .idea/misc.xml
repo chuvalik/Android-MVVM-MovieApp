@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable-v24/ic_account.xml" value="0.209" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable-v24/ic_bordered_favorite.xml" value="0.209" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background_rounded.xml" value="0.209" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background_searchview.xml" value="0.209" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/selector_background_tab.xml" value="0.1" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/adapter_new_movie.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_main_screen.xml" value="0.22418478260869565" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_main_screen.xml" value="0.264" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/tab_item.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

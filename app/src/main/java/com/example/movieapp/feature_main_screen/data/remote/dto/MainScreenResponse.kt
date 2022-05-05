@@ -1,5 +1,8 @@
 package com.example.movieapp.feature_main_screen.data.remote.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class MainScreenResponse(
-    val new_movies: List<NewMovieDto>
+    @SerializedName("new_movies")
+    val newMovies: List<NewMovieDto>
 )

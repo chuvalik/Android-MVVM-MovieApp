@@ -17,9 +17,9 @@ fun NewMovieDto.toNewMovieEntity(): NewMovieEntity {
 fun NewMovieDto.toNewMovieDomain(): NewMovieDomain {
     return NewMovieDomain(
         genre = genre,
-        id = id,
+        id = id.toString(),
         picture = picture,
-        rating = rating,
+        rating = rating.toString(),
         title = title
     )
 }
@@ -27,9 +27,9 @@ fun NewMovieDto.toNewMovieDomain(): NewMovieDomain {
 fun NewMovieEntity.toNewMovieDomain(): NewMovieDomain {
     return NewMovieDomain(
         genre = genre,
-        id = id,
+        id = id.toString(),
         picture = picture,
-        rating = rating,
+        rating = rating.toString(),
         title = title
     )
 }
