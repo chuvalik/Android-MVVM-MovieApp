@@ -10,7 +10,8 @@
         android:id="@+id/ivNewMovie"
         android:layout_width="140dp"
         android:layout_height="190dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        tools:src="@drawable/movie_poster"/>
 
     <TextView
         android:id="@+id/tvTitle"

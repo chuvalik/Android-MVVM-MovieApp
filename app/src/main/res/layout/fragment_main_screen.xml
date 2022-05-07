@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:layout_gravity="center"
-                android:background="@drawable/background_rounded_ripple_gray"
+                android:background="@drawable/background_circle_ripple_gray"
                 android:src="@drawable/ic_account"/>
         </FrameLayout>
 
@@ -178,7 +178,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:padding="16dp"
-                android:background="@drawable/background_rounded_ripple_gray"
+                android:background="@drawable/background_circle_ripple_gray"
                 android:src="@drawable/ic_account"/>
         </FrameLayout>
 
@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:layout_gravity="center"
-                android:background="@drawable/background_rounded_ripple_gray"
+                android:background="@drawable/background_circle_ripple_gray"
                 android:src="@drawable/ic_account"/>
         </FrameLayout>
 

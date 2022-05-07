@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/main_screen">
+    app:startDestination="@id/detail_screen">
 
     <fragment
         android:id="@+id/main_screen"
         android:name="com.example.movieapp.feature_main_screen.presentation.fragment.MainScreenFragment"
         android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" />
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_main_screen_to_detail_screen"
+            app:destination="@id/detail_screen" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_screen"
+        android:name="com.example.movieapp.feature_detail_screen.presentation.fragment.DetailScreenFragment"
+        android:label="fragment_detail_screen"
+        tools:layout="@layout/fragment_detail_screen" />
 </navigation>

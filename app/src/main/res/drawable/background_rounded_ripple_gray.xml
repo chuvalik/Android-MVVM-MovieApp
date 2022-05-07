@@ -4,8 +4,9 @@
     android:color="@color/gray"> <!-- default ripple color -->
 
     <item>
-        <shape android:shape="oval"
+        <shape android:shape="rectangle"
             android:color="@color/gray">
+            <corners android:radius="12dp"/>
             <solid android:color="@color/light_black" />
         </shape>
     </item>
