@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginEnd="16dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        app:cardCornerRadius="12dp">
+
+    <ImageView
+        android:id="@+id/ivActor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/movie_poster" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/card_top_margin"
+        style="@style/Body"
+        tools:text="Johnny Depp" />
+
+    <TextView
+        android:id="@+id/tvCharacterName"
+        android:layout_width="match_parent"
+        style="@style/Body"
+        android:layout_marginTop="@dimen/card_top_margin"
+        android:layout_height="wrap_content"
+        tools:text="Johnny Depp" />
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="new_movies">New Movies</string>
+    <string name="button_see_all">see all</string>
+    <string name="categories">Categories</string>
+    <string name="watch_together">Let\'s watch together</string>
+    <string name="overview_test_example">Nathan Drake and Victor \'Sully\' Sullivan, two adventurers, set out in search of the world\'s coveted treasure. In addition, they hope to find clues that will lead them to Nathan\'s long-lost brother.</string>
+    <string name="trending">Trending</string>
+</resources>

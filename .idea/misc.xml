@@ -5,20 +5,37 @@
       <map>
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable-v24/ic_account.xml" value="0.209" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable-v24/ic_bordered_favorite.xml" value="0.209" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable-v24/ic_favorite_bordered.xml" value="0.165" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background_circle_ripple_gray.xml" value="0.1" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background_circle_ripple_red.xml" value="0.1" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background_rounded.xml" value="0.209" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background_rounded_ripple_gray.xml" value="0.1375" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background_searchview.xml" value="0.209" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background_top_rounded.xml" value="0.165" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_arrow_back.xml" value="0.165" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.165" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.1" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_baseline_star_rate_24.xml" value="0.152" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_star_rate.xml" value="0.165" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/selector_background_tab.xml" value="0.1" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/adapter_cast_item.xml" value="0.22509057971014493" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/adapter_movie_item.xml" value="0.4" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/adapter_new_movie.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/adapter_recommended_item.xml" value="0.22509057971014493" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_detail_screen.xml" value="0.264" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_main_screen.xml" value="0.264" />
         <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/tab_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/app/src/main/res/layout/view_pager_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_detail_screen/src/main/res/drawable/background_circle_ripple_red.xml" value="0.144" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_detail_screen/src/main/res/layout/adapter_cast_item.xml" value="0.19927536231884058" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_detail_screen/src/main/res/layout/adapter_movie_item.xml" value="0.19927536231884058" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_detail_screen/src/main/res/layout/fragment_blank.xml" value="0.19927536231884058" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_detail_screen/src/main/res/layout/fragment_detail_screen.xml" value="0.19927536231884058" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_main_screen/src/main/res/drawable/ic_favorite_bordered.xml" value="0.124" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_main_screen/src/main/res/layout/fragment_main_screen.xml" value="0.14673913043478262" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_main_screen/src/main/res/layout/tab_item.xml" value="0.14673913043478262" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/MovieApp/feature_main_screen/src/main/res/layout/view_pager_item.xml" value="0.264" />
       </map>
     </option>
   </component>
