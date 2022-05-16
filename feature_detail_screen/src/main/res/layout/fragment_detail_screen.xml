@@ -183,7 +183,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCast"
-            tools:listitem="@layout/adapter_cast_item" />
+            tools:listitem="@layout/cast_item" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineVerticalLeft"

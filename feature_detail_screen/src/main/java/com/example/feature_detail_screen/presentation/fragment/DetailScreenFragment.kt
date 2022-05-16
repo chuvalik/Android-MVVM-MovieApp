@@ -10,7 +10,7 @@ import com.bumptech.glide.RequestManager
 import com.example.feature_core.ui.BaseFragment
 import com.example.feature_detail_screen.databinding.FragmentDetailScreenBinding
 import com.example.feature_detail_screen.domain.model.DetailMovieDomain
-import com.example.feature_detail_screen.presentation.adapter.DetailScreenCastAdapter
+import com.example.feature_detail_screen.presentation.adapter.DetailScreenAdapter
 import com.example.feature_detail_screen.presentation.view_model.DetailScreenViewModel
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
@@ -23,19 +23,17 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
 
     private val glide by inject<RequestManager>()
 
-    private lateinit var castAdapter: DetailScreenCastAdapter
+    private lateinit var castAdapter: DetailScreenAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        castAdapter = DetailScreenCastAdapter(glide)
+        castAdapter = DetailScreenAdapter(glide)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.uiEvent.collect { event ->
                 when (event) {
-                    is DetailScreenEvent.Success -> {
-                        bindData(detailMovieDomain = event.data)
-                    }
+                    is DetailScreenEvent.Success -> bindData(detailMovieDomain = event.data)
                     else -> Unit
                 }
             }
@@ -55,8 +53,8 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
         binding.tvMovieRating.text = detailMovieDomain.rating
         binding.tvOverview.text = detailMovieDomain.overview
 
-        castAdapter.submitList(detailMovieDomain.cast)
         binding.rvCast.adapter = castAdapter
+        castAdapter.items = detailMovieDomain.cast
     }
 
 

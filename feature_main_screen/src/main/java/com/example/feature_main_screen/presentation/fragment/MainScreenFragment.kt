@@ -13,8 +13,9 @@ import com.bumptech.glide.RequestManager
 import com.example.feature_core.ui.BaseFragment
 import com.example.feature_main_screen.R
 import com.example.feature_main_screen.databinding.FragmentMainScreenBinding
-import com.example.feature_main_screen.presentation.adapter.MainScreenNewMoviesAdapter
-import com.example.feature_main_screen.presentation.adapter.MainScreenTrendingMoviesAdapter
+import com.example.feature_main_screen.domain.model.NewMovieDomain
+import com.example.feature_main_screen.presentation.adapter.NewMoviesAdapter
+import com.example.feature_main_screen.presentation.adapter.TrendingMoviesAdapter
 import com.example.feature_main_screen.presentation.utils.Data.categories
 import com.example.feature_main_screen.presentation.view_model.MainScreenViewModel
 import kotlinx.coroutines.flow.collect
@@ -23,8 +24,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
 
-    private lateinit var newMoviesAdapter: MainScreenNewMoviesAdapter
-    private lateinit var trendingMoviesAdapter: MainScreenTrendingMoviesAdapter
+    private lateinit var trendingMoviesAdapter: TrendingMoviesAdapter
+    private lateinit var newMoviesAdapter: NewMoviesAdapter
 
     private val viewModel by viewModel<MainScreenViewModel>()
 
@@ -33,34 +34,33 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        newMoviesAdapter = MainScreenNewMoviesAdapter(glide) {
-            findNavController().navigate(Uri.parse("myApp://featureDetailsScreen"))
-        }
-        trendingMoviesAdapter = MainScreenTrendingMoviesAdapter(glide) {
+        setupTabLayout()
+
+        newMoviesAdapter = NewMoviesAdapter(glide)
+        trendingMoviesAdapter = TrendingMoviesAdapter(glide) {
             findNavController().navigate(Uri.parse("myApp://featureDetailsScreen"))
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.uiEvent.collect { event ->
                 when (event) {
-                    is MainScreenEvent.Success -> {
-                        event.data.let { data ->
-                            newMoviesAdapter.submitList(data)
-                            trendingMoviesAdapter.submitList(data)
-                        }
-                    }
+                    is MainScreenEvent.Success -> bindData(event.data)
                     else -> Unit
                 }
             }
         }
 
-        binding.rvNewMovies.adapter = newMoviesAdapter
-        binding.vpTrending.adapter = trendingMoviesAdapter
         binding.btnSeeAllNewMovies.setOnClickListener {
             findNavController().navigate(Uri.parse("myApp://featureDetailsScreen"))
         }
 
-        setupTabLayout()
+    }
+
+    private fun bindData(data: List<NewMovieDomain>) {
+        binding.rvNewMovies.adapter = newMoviesAdapter
+        newMoviesAdapter.items = data
+        binding.vpTrending.adapter = trendingMoviesAdapter
+        trendingMoviesAdapter.items = data
     }
 
     private fun setupTabLayout() = categories.onEachIndexed { index, (title, image) ->
