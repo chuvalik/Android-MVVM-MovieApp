@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature_detail_screen" />
             <option value="$PROJECT_DIR$/feature_main_screen" />
+            <option value="$PROJECT_DIR$/feature_search_screen" />
           </set>
         </option>
       </GradleProjectSettings>

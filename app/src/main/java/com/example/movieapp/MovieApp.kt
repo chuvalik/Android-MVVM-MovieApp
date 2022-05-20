@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.feature_core.coreModule
 import com.example.feature_detail_screen.di.detailScreenModule
 import com.example.feature_main_screen.di.mainScreenModule
+import com.example.feature_search_screen.di.searchScreenModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -16,7 +17,8 @@ class MovieApp: Application() {
             modules(
                 coreModule,
                 mainScreenModule,
-                detailScreenModule
+                detailScreenModule,
+                searchScreenModule
             )
         }
     }

@@ -10,6 +10,7 @@ val coreModule = module {
     single {
         Glide.with(androidContext()).setDefaultRequestOptions(
             RequestOptions()
+                .placeholder(R.drawable.background_place_holder)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
         )
     }

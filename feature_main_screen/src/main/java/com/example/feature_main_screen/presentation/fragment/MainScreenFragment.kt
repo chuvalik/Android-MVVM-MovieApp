@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.example.feature_core.ui.BaseFragment
+import com.example.feature_core.utils.Constants
 import com.example.feature_main_screen.R
 import com.example.feature_main_screen.databinding.FragmentMainScreenBinding
 import com.example.feature_main_screen.domain.model.NewMovieDomain
@@ -38,8 +39,11 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
 
         newMoviesAdapter = NewMoviesAdapter(glide)
         trendingMoviesAdapter = TrendingMoviesAdapter(glide) {
-            findNavController().navigate(Uri.parse("myApp://featureDetailsScreen"))
+            findNavController().navigate(Uri.parse(Constants.DETAILS_SCREEN_DEEP_LINK))
         }
+        binding.rvNewMovies.adapter = newMoviesAdapter
+        binding.vpTrending.adapter = trendingMoviesAdapter
+
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.uiEvent.collect { event ->
@@ -51,15 +55,13 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
         }
 
         binding.btnSeeAllNewMovies.setOnClickListener {
-            findNavController().navigate(Uri.parse("myApp://featureDetailsScreen"))
+            findNavController().navigate(Uri.parse(Constants.DETAILS_SCREEN_DEEP_LINK))
         }
 
     }
 
     private fun bindData(data: List<NewMovieDomain>) {
-        binding.rvNewMovies.adapter = newMoviesAdapter
         newMoviesAdapter.items = data
-        binding.vpTrending.adapter = trendingMoviesAdapter
         trendingMoviesAdapter.items = data
     }
 

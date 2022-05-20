@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    tools:background="@color/dark_blue"
     tools:context="com.example.feature_main_screen.presentation.fragment.MainScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,14 +39,12 @@
         <TextView
             android:id="@+id/tvTrending"
             style="@style/Header1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/trending"
             android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/verticalGuidelineRight"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:text="@string/trending"
             app:layout_constraintStart_toStartOf="@+id/verticalGuidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/searchViewDiscover" />
+            app:layout_constraintTop_toBottomOf="@+id/tabLayoutCategories" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpTrending"
@@ -61,12 +60,12 @@
             style="@style/Header1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginTop="24dp"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="@string/categories"
             app:layout_constraintStart_toStartOf="@+id/verticalGuidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/vpTrending" />
+            app:layout_constraintTop_toBottomOf="@+id/searchViewDiscover" />
 
         <Button
             android:id="@+id/btnSeeAllCategories"
@@ -75,19 +74,19 @@
             android:layout_height="wrap_content"
             android:minWidth="0dp"
             android:text="@string/button_see_all"
-            app:layout_constraintBottom_toBottomOf="@+id/tvCategories"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTrending"
             app:layout_constraintEnd_toStartOf="@+id/verticalGuidelineRight"
-            app:layout_constraintTop_toTopOf="@+id/tvCategories" />
+            app:layout_constraintTop_toTopOf="@+id/tvTrending" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayoutCategories"
             android:layout_width="0dp"
             android:layout_height="72dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:background="@color/dark_blue"
             android:clipToPadding="false"
-            android:paddingEnd="8dp"
             android:paddingStart="12dp"
+            android:paddingEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCategories"
@@ -104,7 +103,7 @@
             android:gravity="center_vertical"
             android:text="@string/new_movies"
             app:layout_constraintStart_toStartOf="@+id/verticalGuidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayoutCategories" />
+            app:layout_constraintTop_toBottomOf="@+id/vpTrending" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvNewMovies"

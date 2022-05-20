@@ -6,6 +6,7 @@ import com.example.feature_main_screen.data.mapper.toNewMovieDomain
 import com.example.feature_main_screen.data.remote.MainScreenApi
 import com.example.feature_main_screen.domain.model.NewMovieDomain
 import com.example.feature_main_screen.domain.repository.MainScreenRepository
+import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -13,14 +14,17 @@ class MainScreenRepositoryImpl(
     private val api: MainScreenApi,
 ) : MainScreenRepository {
 
-    override suspend fun fetchNewMovies(): Resource<List<NewMovieDomain>> {
-        return try {
+    override suspend fun fetchNewMovies() = flow {
+        emit(Resource.Loading())
+
+        try {
             val remoteData = api.fetchNewMoviesFromApi().newMovies.map { it.toNewMovieDomain() }
-            Resource.Success(remoteData)
+            emit(Resource.Success(remoteData))
         } catch (e: IOException) {
-            Resource.Error(error = e.message ?: UNEXPECTED_ERROR_MESSAGE)
+            emit(Resource.Error(error = e.message ?: UNEXPECTED_ERROR_MESSAGE))
         } catch (e: HttpException) {
-            Resource.Error(error = e.message ?: UNEXPECTED_ERROR_MESSAGE)
+            emit(Resource.Error(error = e.message ?: UNEXPECTED_ERROR_MESSAGE))
         }
+
     }
 }
