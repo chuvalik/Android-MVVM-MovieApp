@@ -9,5 +9,5 @@ data class MovieDetailsDomain(
     val image: String,
     val plot: String,
     val runtimeMins: String,
-    val similars: List<SimilarDomain>,
+    val similars: List<SimilarDomain>?,
 )

@@ -9,7 +9,8 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvNewMovie"
+        android:background="@color/white"
+        android:id="@+id/cvMovie"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         app:cardCornerRadius="12dp">

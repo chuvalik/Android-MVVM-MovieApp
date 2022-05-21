@@ -9,7 +9,8 @@ interface DetailScreenApi {
 
     @GET("en/API/Title")
     suspend fun fetchDetailMovie(
-        @Query("apiKey") apiKey: String = Constants.API_KEY
+        @Query("apiKey") apiKey: String = Constants.API_KEY,
+        @Query("id") id: String
     ): MovieDetailsResponse
 
 }

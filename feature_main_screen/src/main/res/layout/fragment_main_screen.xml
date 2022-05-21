@@ -82,7 +82,7 @@
             android:id="@+id/tabLayoutCategories"
             android:layout_width="0dp"
             android:layout_height="72dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:background="@color/dark_blue"
             android:clipToPadding="false"
             android:paddingStart="12dp"

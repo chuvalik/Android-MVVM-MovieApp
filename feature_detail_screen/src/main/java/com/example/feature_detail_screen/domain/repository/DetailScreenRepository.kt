@@ -7,5 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface DetailScreenRepository {
 
-    suspend fun fetchDetailMovie(): Flow<Resource<MovieDetailsDomain>>
+    suspend fun fetchDetailMovie(
+        id: String
+    ): Flow<Resource<MovieDetailsDomain>>
 }

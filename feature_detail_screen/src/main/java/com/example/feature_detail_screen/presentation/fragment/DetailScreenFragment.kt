@@ -1,6 +1,7 @@
 package com.example.feature_detail_screen.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,9 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val argument = arguments?.getString("id")
+        viewModel.fetchDetailMovie(argument ?: "")
+
         setupAdapter()
 
         observeMovieDetails()
@@ -47,7 +51,8 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
             viewModel.uiEvent.collect { event ->
                 when (event) {
                     is DetailScreenEvent.Success -> bindData(movieDetailsDomain = event.data)
-                    else -> Unit
+                    is DetailScreenEvent.Failure -> Log.d("DetailTest", event.error)
+                    else -> Log.d("DetailTest", "?")
                 }
             }
         }
@@ -61,6 +66,7 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
         binding.tvGenre.text = movieDetailsDomain.genres
         binding.tvMovieRating.text = movieDetailsDomain.imDbRating
         binding.tvOverview.text = movieDetailsDomain.plot
+
         castAdapter.items = movieDetailsDomain.actorList
     }
 

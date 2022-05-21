@@ -29,24 +29,23 @@ object MainScreenAdapterDelegate {
     fun trendingMoviesAdapterDelegate(
         glide: RequestManager,
         onGoToDetail: (TrendingMovieDomain) -> Unit
-    ) =
-        adapterDelegateViewBinding<TrendingMovieDomain, DisplayableItem, AdapterMovieItemBinding>(
-            { layoutInflater, parent ->
-                AdapterMovieItemBinding.inflate(
-                    layoutInflater,
-                    parent,
-                    false
-                )
-            }
-        ) {
-            bind {
-                glide.load(item.image).into(binding.ivMovie)
-                binding.tvTitle.text = item.fullTitle
-                binding.tvRating.text = item.imDbRating
+    ) = adapterDelegateViewBinding<TrendingMovieDomain, DisplayableItem, AdapterMovieItemBinding>(
+        { layoutInflater, parent ->
+            AdapterMovieItemBinding.inflate(
+                layoutInflater,
+                parent,
+                false
+            )
+        }
+    ) {
+        bind {
+            glide.load(item.image).into(binding.ivMovie)
+            binding.tvTitle.text = item.fullTitle
+            binding.tvRating.text = item.imDbRating
 
-                binding.ivMovie.setOnClickListener {
-                    onGoToDetail(item)
-                }
+            binding.ivMovie.setOnClickListener {
+                onGoToDetail(item)
             }
         }
+    }
 }

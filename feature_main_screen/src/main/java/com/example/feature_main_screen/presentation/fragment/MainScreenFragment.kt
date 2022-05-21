@@ -43,17 +43,14 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
 
         observeTrendingMovies()
         observeComingSoonMovies()
-
-        binding.btnSeeAllNewMovies.setOnClickListener {
-            findNavController().navigate(Uri.parse(Constants.DETAILS_SCREEN_DEEP_LINK))
-        }
-
     }
 
     private fun setupAdapters() {
         comingSoonMoviesAdapter = ComingSoonMoviesAdapter(glide)
-        trendingMoviesAdapter = TrendingMoviesAdapter(glide) {
-            findNavController().navigate(Uri.parse(Constants.DETAILS_SCREEN_DEEP_LINK))
+        trendingMoviesAdapter = TrendingMoviesAdapter(glide) { movie ->
+            findNavController().navigate(
+                Uri.parse("${Constants.DETAILS_SCREEN_DEEP_LINK}/${movie.id}")
+            )
         }
 
         binding.vpComingSoon.adapter = comingSoonMoviesAdapter

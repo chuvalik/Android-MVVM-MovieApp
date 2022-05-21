@@ -11,12 +11,12 @@ class DetailScreenRepositoryImpl(
     private val api: DetailScreenApi
 ) : DetailScreenRepository {
 
-    override suspend fun fetchDetailMovie() = flow {
+    override suspend fun fetchDetailMovie(id: String) = flow {
 
         emit(Resource.Loading())
 
         try {
-            val remoteData = api.fetchDetailMovie().toMovieDetailsDomain()
+            val remoteData = api.fetchDetailMovie(id = id).toMovieDetailsDomain()
             emit(Resource.Success(remoteData))
         } catch (e: Exception) {
             emit(Resource.Error(e.message ?: UNEXPECTED_ERROR_MESSAGE))

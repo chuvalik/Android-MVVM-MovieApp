@@ -11,7 +11,7 @@
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen">
         <deepLink
-            android:id="@+id/deepLink"
+            android:id="@+id/deepLinkMain"
             app:uri="myApp://featureMainScreen" />
     </fragment>
 
@@ -20,6 +20,13 @@
         android:name="com.example.feature_detail_screen.presentation.fragment.DetailScreenFragment"
         android:label="fragment_detail_screen"
         tools:layout="@layout/fragment_detail_screen">
+        <argument
+            android:name="id"
+            android:defaultValue='empty'
+            app:argType="string" />
+        <deepLink
+            android:id="@+id/deepLinkDetails"
+            app:uri="myApp://featureDetailsScreen/{id}" />
     </fragment>
     <fragment
         android:id="@+id/search_screen"

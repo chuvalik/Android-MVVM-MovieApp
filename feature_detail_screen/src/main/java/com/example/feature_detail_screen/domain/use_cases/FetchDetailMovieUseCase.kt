@@ -6,5 +6,5 @@ class FetchDetailMovieUseCase(
     private val repository: DetailScreenRepository
 ) {
 
-    suspend operator fun invoke() = repository.fetchDetailMovie()
+    suspend operator fun invoke(id: String) = repository.fetchDetailMovie(id = id)
 }
