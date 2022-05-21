@@ -27,7 +27,17 @@
             android:layout_gravity="bottom"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
-            tools:text="Uncharted" />
+            tools:text="Uncharted (2022)" />
+
+        <TextView
+            android:id="@+id/tvRating"
+            style="@style/Header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            tools:text="7.4" />
     </FrameLayout>
 
 </androidx.cardview.widget.CardView>

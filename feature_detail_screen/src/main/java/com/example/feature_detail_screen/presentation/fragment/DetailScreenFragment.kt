@@ -9,13 +9,13 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.example.feature_core.ui.BaseFragment
 import com.example.feature_detail_screen.databinding.FragmentDetailScreenBinding
-import com.example.feature_detail_screen.domain.model.DetailMovieDomain
-import com.example.feature_detail_screen.presentation.adapter.DetailScreenAdapter
+import com.example.feature_detail_screen.domain.model.MovieDetailsDomain
+import com.example.feature_detail_screen.presentation.adapter.CastAdapter
 import com.example.feature_detail_screen.presentation.view_model.DetailScreenViewModel
+import com.example.feature_detail_screen.presentation.view_model.model.DetailScreenEvent
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
 
@@ -23,40 +23,46 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
 
     private val glide by inject<RequestManager>()
 
-    private lateinit var castAdapter: DetailScreenAdapter
+    private lateinit var castAdapter: CastAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        castAdapter = DetailScreenAdapter(glide)
+        setupAdapter()
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.uiEvent.collect { event ->
-                when (event) {
-                    is DetailScreenEvent.Success -> bindData(detailMovieDomain = event.data)
-                    else -> Unit
-                }
-            }
-        }
+        observeMovieDetails()
 
         binding.btnGoBack.setOnClickListener {
             findNavController().navigateUp()
         }
     }
 
-    private fun bindData(detailMovieDomain: DetailMovieDomain) {
-        binding.tvTitle.text = detailMovieDomain.title
-        glide.load(detailMovieDomain.poster).into(binding.ivPoster)
-        glide.load(detailMovieDomain.poster).into(binding.ivBackground)
-        binding.tvDuration.text = "120 min"
-        binding.tvGenre.text = detailMovieDomain.genre
-        binding.tvMovieRating.text = detailMovieDomain.rating
-        binding.tvOverview.text = detailMovieDomain.overview
-
+    private fun setupAdapter() {
+        castAdapter = CastAdapter(glide)
         binding.rvCast.adapter = castAdapter
-        castAdapter.items = detailMovieDomain.cast
     }
 
+    private fun observeMovieDetails() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.uiEvent.collect { event ->
+                when (event) {
+                    is DetailScreenEvent.Success -> bindData(movieDetailsDomain = event.data)
+                    else -> Unit
+                }
+            }
+        }
+    }
+
+    private fun bindData(movieDetailsDomain: MovieDetailsDomain) {
+        glide.load(movieDetailsDomain.image).into(binding.ivPoster)
+        glide.load(movieDetailsDomain.image).into(binding.ivBackground)
+        binding.tvTitle.text = movieDetailsDomain.fullTitle
+        binding.tvDuration.text = movieDetailsDomain.runtimeMins
+        binding.tvGenre.text = movieDetailsDomain.genres
+        binding.tvMovieRating.text = movieDetailsDomain.imDbRating
+        binding.tvOverview.text = movieDetailsDomain.plot
+        castAdapter.items = movieDetailsDomain.actorList
+    }
 
     override fun initBinding(
         inflater: LayoutInflater,

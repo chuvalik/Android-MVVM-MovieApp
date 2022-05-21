@@ -2,6 +2,7 @@ package com.example.feature_main_screen.presentation.fragment
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +15,13 @@ import com.example.feature_core.ui.BaseFragment
 import com.example.feature_core.utils.Constants
 import com.example.feature_main_screen.R
 import com.example.feature_main_screen.databinding.FragmentMainScreenBinding
-import com.example.feature_main_screen.domain.model.NewMovieDomain
-import com.example.feature_main_screen.presentation.adapter.NewMoviesAdapter
+import com.example.feature_main_screen.domain.model.TrendingMovieDomain
+import com.example.feature_main_screen.presentation.adapter.ComingSoonMoviesAdapter
 import com.example.feature_main_screen.presentation.adapter.TrendingMoviesAdapter
 import com.example.feature_main_screen.presentation.utils.Data.categories
 import com.example.feature_main_screen.presentation.view_model.MainScreenViewModel
+import com.example.feature_main_screen.presentation.view_model.model.ComingSoonMovieEvent
+import com.example.feature_main_screen.presentation.view_model.model.TrendingMovieEvent
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,7 +29,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
 
     private lateinit var trendingMoviesAdapter: TrendingMoviesAdapter
-    private lateinit var newMoviesAdapter: NewMoviesAdapter
+    private lateinit var comingSoonMoviesAdapter: ComingSoonMoviesAdapter
 
     private val viewModel by viewModel<MainScreenViewModel>()
 
@@ -36,23 +39,10 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         setupTabLayout()
+        setupAdapters()
 
-        newMoviesAdapter = NewMoviesAdapter(glide)
-        trendingMoviesAdapter = TrendingMoviesAdapter(glide) {
-            findNavController().navigate(Uri.parse(Constants.DETAILS_SCREEN_DEEP_LINK))
-        }
-        binding.rvNewMovies.adapter = newMoviesAdapter
-        binding.vpTrending.adapter = trendingMoviesAdapter
-
-
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.uiEvent.collect { event ->
-                when (event) {
-                    is MainScreenEvent.Success -> bindData(event.data)
-                    else -> Unit
-                }
-            }
-        }
+        observeTrendingMovies()
+        observeComingSoonMovies()
 
         binding.btnSeeAllNewMovies.setOnClickListener {
             findNavController().navigate(Uri.parse(Constants.DETAILS_SCREEN_DEEP_LINK))
@@ -60,9 +50,42 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
 
     }
 
-    private fun bindData(data: List<NewMovieDomain>) {
-        newMoviesAdapter.items = data
-        trendingMoviesAdapter.items = data
+    private fun setupAdapters() {
+        comingSoonMoviesAdapter = ComingSoonMoviesAdapter(glide)
+        trendingMoviesAdapter = TrendingMoviesAdapter(glide) {
+            findNavController().navigate(Uri.parse(Constants.DETAILS_SCREEN_DEEP_LINK))
+        }
+
+        binding.vpComingSoon.adapter = comingSoonMoviesAdapter
+        binding.rvTrending.adapter = trendingMoviesAdapter
+    }
+
+    private fun observeTrendingMovies() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.uiTrendingMovieEvent.collect { event ->
+                when (event) {
+                    is TrendingMovieEvent.Success -> trendingMoviesAdapter.items = event.data
+                    else -> Unit
+                }
+            }
+        }
+    }
+
+    private fun observeComingSoonMovies() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.uiComingSoonMovieEvent.collect { event ->
+                when (event) {
+                    is ComingSoonMovieEvent.Success -> {
+                        Log.d("MainScreenFragmentLog", "Success")
+                        comingSoonMoviesAdapter.items = event.data
+                    }
+                    is ComingSoonMovieEvent.Failure -> {
+                        Log.d("MainScreenFragmentLog", event.error)
+                    }
+                    else -> Log.d("MainScreenFragmentLog", "?")
+                }
+            }
+        }
     }
 
     private fun setupTabLayout() = categories.onEachIndexed { index, (title, image) ->

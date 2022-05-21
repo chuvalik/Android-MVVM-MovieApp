@@ -1,5 +1,6 @@
 package com.example.feature_search_screen.di
 
+import com.example.feature_core.utils.Constants
 import com.example.feature_search_screen.data.remote.SearchScreenApi
 import com.example.feature_search_screen.data.repository.SearchScreenRepositoryImpl
 import com.example.feature_search_screen.domain.repository.SearchScreenRepository
@@ -13,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val searchScreenModule = module {
     single {
         Retrofit.Builder()
-            .baseUrl(SearchScreenApi.BASE_URL)
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(SearchScreenApi::class.java)

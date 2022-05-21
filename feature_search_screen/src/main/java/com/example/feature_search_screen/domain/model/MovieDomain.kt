@@ -9,5 +9,6 @@ data class MovieDomain(
     val resultType: String,
     val title: String
 ) : DisplayableItem {
-    override val itemId: Int = 1 // TODO
+    override val itemId: String
+        get() = id
 }

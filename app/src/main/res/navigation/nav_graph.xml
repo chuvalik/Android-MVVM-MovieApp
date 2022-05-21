@@ -20,8 +20,10 @@
         android:name="com.example.feature_detail_screen.presentation.fragment.DetailScreenFragment"
         android:label="fragment_detail_screen"
         tools:layout="@layout/fragment_detail_screen">
-        <deepLink
-            android:id="@+id/deepLink2"
-            app:uri="myApp://featureDetailsScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/search_screen"
+        android:name="com.example.feature_search_screen.presentation.fragment.SearchScreenFragment"
+        android:label="SearchScreenFragment" >
     </fragment>
 </navigation>

@@ -76,18 +76,6 @@
                 tools:src="@drawable/movie_poster" />
         </androidx.cardview.widget.CardView>
 
-        <ImageButton
-            android:id="@+id/ivPlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_circle_ripple_red"
-            android:padding="12dp"
-            android:src="@drawable/ic_baseline_play_arrow_24"
-            app:layout_constraintBottom_toTopOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cvPoster"
-            app:layout_constraintTop_toTopOf="@+id/view" />
-
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"

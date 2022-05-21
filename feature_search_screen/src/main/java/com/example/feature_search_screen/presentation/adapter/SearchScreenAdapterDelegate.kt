@@ -14,7 +14,8 @@ object SearchScreenAdapterDelegate {
         { layoutInflater, parent -> ItemMovieBinding.inflate(layoutInflater, parent, false) }
     ) {
         bind {
-            // TODO
+            binding.tvTitle.text = item.title
+            glide.load(item.image).into(binding.ivMovie)
         }
     }
 }
