@@ -31,6 +31,9 @@
     <fragment
         android:id="@+id/search_screen"
         android:name="com.example.feature_search_screen.presentation.fragment.SearchScreenFragment"
-        android:label="SearchScreenFragment" >
+        android:label="SearchScreenFragment">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="myApp://featureSearchScreen" />
     </fragment>
 </navigation>

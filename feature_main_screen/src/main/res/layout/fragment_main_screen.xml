@@ -18,23 +18,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Discover"
+            android:text="@string/discover"
             app:layout_constraintEnd_toStartOf="@+id/verticalGuidelineRight"
             app:layout_constraintStart_toStartOf="@+id/verticalGuidelinelEft"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchViewDiscover"
+        <View
+            android:id="@+id/searchView"
             android:layout_width="0dp"
-            android:layout_marginTop="12dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/background_searchview"
-            app:iconifiedByDefault="false"
             app:layout_constraintEnd_toStartOf="@+id/verticalGuidelineRight"
             app:layout_constraintStart_toStartOf="@+id/verticalGuidelinelEft"
-            app:layout_constraintTop_toBottomOf="@+id/tvDiscover"
-            app:queryBackground="@android:color/transparent"
-            app:queryHint="Search" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDiscover" />
 
         <TextView
             android:id="@+id/tvTrending"
@@ -65,7 +62,7 @@
             android:gravity="center_vertical"
             android:text="@string/categories"
             app:layout_constraintStart_toStartOf="@+id/verticalGuidelinelEft"
-            app:layout_constraintTop_toBottomOf="@+id/searchViewDiscover" />
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <Button
             android:id="@+id/btnSeeAllCategories"
@@ -147,6 +144,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="24dp" />
+
+        <TextView
+            android:id="@+id/tvSearchHint"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Search"
+            app:layout_constraintBottom_toBottomOf="@+id/ivSearch"
+            app:layout_constraintStart_toEndOf="@+id/ivSearch"
+            app:layout_constraintTop_toTopOf="@+id/ivSearch"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@+id/searchView"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
+            app:layout_constraintTop_toTopOf="@+id/searchView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

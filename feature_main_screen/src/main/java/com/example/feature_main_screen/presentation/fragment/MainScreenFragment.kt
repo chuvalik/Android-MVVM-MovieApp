@@ -43,6 +43,10 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
 
         observeTrendingMovies()
         observeComingSoonMovies()
+
+        binding.searchView.setOnClickListener {
+            findNavController().navigate(Uri.parse(Constants.SEARCH_SCREEN_DEEP_LINK))
+        }
     }
 
     private fun setupAdapters() {

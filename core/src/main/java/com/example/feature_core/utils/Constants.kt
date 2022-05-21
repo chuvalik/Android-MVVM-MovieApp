@@ -8,4 +8,5 @@ object Constants {
     const val API_KEY = "k_11vxci0s"
 
     const val DETAILS_SCREEN_DEEP_LINK = "myApp://featureDetailsScreen"
+    const val SEARCH_SCREEN_DEEP_LINK = "myApp://featureSearchScreen"
 }
