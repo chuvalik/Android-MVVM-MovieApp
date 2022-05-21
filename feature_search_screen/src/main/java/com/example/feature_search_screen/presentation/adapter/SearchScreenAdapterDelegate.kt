@@ -9,11 +9,17 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 object SearchScreenAdapterDelegate {
 
     fun searchScreenAdapterDelegate(
-        glide: RequestManager
+        glide: RequestManager,
+        onGoToDetail: (MovieDomain) -> Unit
     ) = adapterDelegateViewBinding<MovieDomain, DisplayableItem, ItemMovieBinding>(
         { layoutInflater, parent -> ItemMovieBinding.inflate(layoutInflater, parent, false) }
     ) {
         bind {
+
+            binding.cvMovie.setOnClickListener {
+                onGoToDetail(item)
+            }
+
             binding.tvTitle.text = item.title
             glide.load(item.image).into(binding.ivMovie)
         }

@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.example.feature_core.ui.BaseFragment
+import com.example.feature_detail_screen.R
 import com.example.feature_detail_screen.databinding.FragmentDetailScreenBinding
 import com.example.feature_detail_screen.domain.model.MovieDetailsDomain
 import com.example.feature_detail_screen.presentation.adapter.CastAdapter
@@ -52,7 +53,6 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
                 when (event) {
                     is DetailScreenEvent.Success -> bindData(movieDetailsDomain = event.data)
                     is DetailScreenEvent.Failure -> Log.d("DetailTest", event.error)
-                    else -> Log.d("DetailTest", "?")
                 }
             }
         }
@@ -61,8 +61,9 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
     private fun bindData(movieDetailsDomain: MovieDetailsDomain) {
         glide.load(movieDetailsDomain.image).into(binding.ivPoster)
         glide.load(movieDetailsDomain.image).into(binding.ivBackground)
+        binding.ratingBar.rating = movieDetailsDomain.imDbRating.toFloat() / 2
         binding.tvTitle.text = movieDetailsDomain.fullTitle
-        binding.tvDuration.text = movieDetailsDomain.runtimeMins
+        binding.tvDuration.text = getString(R.string.movie_duration, movieDetailsDomain.runtimeMins)
         binding.tvGenre.text = movieDetailsDomain.genres
         binding.tvMovieRating.text = movieDetailsDomain.imDbRating
         binding.tvOverview.text = movieDetailsDomain.plot

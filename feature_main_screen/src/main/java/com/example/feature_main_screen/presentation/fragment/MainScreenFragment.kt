@@ -15,7 +15,6 @@ import com.example.feature_core.ui.BaseFragment
 import com.example.feature_core.utils.Constants
 import com.example.feature_main_screen.R
 import com.example.feature_main_screen.databinding.FragmentMainScreenBinding
-import com.example.feature_main_screen.domain.model.TrendingMovieDomain
 import com.example.feature_main_screen.presentation.adapter.ComingSoonMoviesAdapter
 import com.example.feature_main_screen.presentation.adapter.TrendingMoviesAdapter
 import com.example.feature_main_screen.presentation.utils.Data.categories
