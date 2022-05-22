@@ -12,13 +12,13 @@ class SearchScreenRepositoryImpl(
     private val api: SearchScreenApi
 ) : SearchScreenRepository {
 
-    override suspend fun fetchMovies() = flow {
+    override suspend fun fetchMovies(query: String) = flow {
 
         emit(Resource.Loading())
 
         try {
-            val remoteData = api.fetchMovies().results
-            val domainData = remoteData.map { it.toMovieDomain() }
+            val remoteData = api.fetchMovies(expression = query).results
+            val domainData = remoteData?.map { it.toMovieDomain() }
             emit(Resource.Success(data = domainData))
         } catch (e: IOException) {
             emit(Resource.Error(error = e.message))

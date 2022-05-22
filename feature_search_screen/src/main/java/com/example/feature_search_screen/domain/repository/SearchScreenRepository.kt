@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface SearchScreenRepository {
 
-    suspend fun fetchMovies(): Flow<Resource<List<MovieDomain>>>
+    suspend fun fetchMovies(query: String): Flow<Resource<List<MovieDomain>>>
 }

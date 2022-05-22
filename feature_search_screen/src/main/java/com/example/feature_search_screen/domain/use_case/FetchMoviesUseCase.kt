@@ -6,5 +6,5 @@ class FetchMoviesUseCase(
     private val repository: SearchScreenRepository
 ) {
 
-    suspend operator fun invoke() = repository.fetchMovies()
+    suspend operator fun invoke(query: String) = repository.fetchMovies(query)
 }

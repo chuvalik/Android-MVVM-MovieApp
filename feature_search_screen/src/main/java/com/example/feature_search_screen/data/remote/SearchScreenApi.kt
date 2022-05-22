@@ -12,7 +12,7 @@ interface SearchScreenApi {
     @GET("en/API/SearchMovie")
     suspend fun fetchMovies(
         @Query ("apiKey") apiKey: String = Constants.API_KEY,
-        @Query ("expression") expression: String = "leon"
+        @Query ("expression") expression: String = ""
     ): SearchMovieResponse
 
 }

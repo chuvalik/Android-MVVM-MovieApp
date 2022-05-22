@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.example.feature_core.ui.BaseFragment
+import com.example.feature_core.ui.onQueryTextChanged
 import com.example.feature_core.utils.Constants
 import com.example.feature_search_screen.databinding.FragmentSearchScreenBinding
 import com.example.feature_search_screen.presentation.adapter.MovieAdapter
@@ -33,6 +34,16 @@ class SearchScreenFragment : BaseFragment<FragmentSearchScreenBinding>() {
         setupAdapter()
 
         observeUi()
+
+        onSearchMovies()
+    }
+
+    private fun onSearchMovies() {
+        binding.searchView.apply {
+            onQueryTextChanged { query ->
+                viewModel.fetchMovies(query)
+            }
+        }
     }
 
     private fun setupAdapter() {
