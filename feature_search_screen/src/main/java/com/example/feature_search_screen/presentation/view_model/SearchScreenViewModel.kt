@@ -3,6 +3,7 @@ package com.example.feature_search_screen.presentation.view_model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.feature_core.utils.Constants
+import com.example.feature_core.utils.DispatcherProvider
 import com.example.feature_core.utils.Resource
 import com.example.feature_search_screen.domain.use_case.FetchMoviesUseCase
 import com.example.feature_search_screen.presentation.view_model.model.SearchScreenState
@@ -15,7 +16,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class SearchScreenViewModel(
-    private val fetchMoviesUseCase: FetchMoviesUseCase
+    private val fetchMoviesUseCase: FetchMoviesUseCase,
+    private val dispatchers: DispatcherProvider
 ) : ViewModel() {
 
     private val _uiEvent = MutableStateFlow<SearchScreenState>(SearchScreenState.Empty)
@@ -25,7 +27,7 @@ class SearchScreenViewModel(
 
     fun fetchMovies(query: String) {
         searchJob?.cancel()
-        searchJob = viewModelScope.launch {
+        searchJob = viewModelScope.launch(dispatchers.io) {
             delay(Constants.API_CALL_DELAY)
             fetchMoviesUseCase(query).onEach { result ->
                 when (result) {
@@ -36,6 +38,11 @@ class SearchScreenViewModel(
                     }
                     is Resource.Loading -> {
                         _uiEvent.value = SearchScreenState.Loading
+                    }
+                    is Resource.Error -> {
+                        _uiEvent.value = SearchScreenState.Failure(
+                            error = result.error ?: Constants.UNEXPECTED_ERROR_MESSAGE
+                        )
                     }
                     else -> Unit
                 }

@@ -41,6 +41,7 @@
 
         <ImageView
             android:id="@+id/ivStar"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -53,7 +54,16 @@
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             tools:text="7.4"  />
+
+        <TextView
+            android:id="@+id/tvComingSoon"
+            style="@style/Body"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trending_movie_coming_soon" />
 
     </LinearLayout>
 

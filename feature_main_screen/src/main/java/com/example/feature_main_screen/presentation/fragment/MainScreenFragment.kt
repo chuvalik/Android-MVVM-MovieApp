@@ -27,8 +27,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
 
-    private lateinit var trendingMoviesAdapter: TrendingMoviesAdapter
-    private lateinit var comingSoonMoviesAdapter: ComingSoonMoviesAdapter
+    private var trendingMoviesAdapter: TrendingMoviesAdapter? = null
+    private var comingSoonMoviesAdapter: ComingSoonMoviesAdapter? = null
 
     private val viewModel by viewModel<MainScreenViewModel>()
 
@@ -43,7 +43,11 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
         observeTrendingMovies()
         observeComingSoonMovies()
 
-        binding.searchView.setOnClickListener {
+        applyBinding()
+    }
+
+    private fun applyBinding() = binding.apply {
+        searchView.setOnClickListener {
             findNavController().navigate(Uri.parse(Constants.SEARCH_SCREEN_DEEP_LINK))
         }
     }
@@ -64,7 +68,7 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.uiTrendingMovieEvent.collect { event ->
                 when (event) {
-                    is TrendingMovieEvent.Success -> trendingMoviesAdapter.items = event.data
+                    is TrendingMovieEvent.Success -> trendingMoviesAdapter?.items = event.data
                     else -> Unit
                 }
             }
@@ -76,8 +80,7 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>() {
             viewModel.uiComingSoonMovieEvent.collect { event ->
                 when (event) {
                     is ComingSoonMovieEvent.Success -> {
-                        Log.d("MainScreenFragmentLog", "Success")
-                        comingSoonMoviesAdapter.items = event.data
+                        comingSoonMoviesAdapter?.items = event.data
                     }
                     is ComingSoonMovieEvent.Failure -> {
                         Log.d("MainScreenFragmentLog", event.error)

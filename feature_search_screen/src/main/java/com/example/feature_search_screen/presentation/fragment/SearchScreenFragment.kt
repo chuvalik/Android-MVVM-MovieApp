@@ -26,7 +26,7 @@ class SearchScreenFragment : BaseFragment<FragmentSearchScreenBinding>() {
 
     private val glide by inject<RequestManager>()
 
-    private lateinit var adapter: MovieAdapter
+    private var adapter: MovieAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,7 +60,7 @@ class SearchScreenFragment : BaseFragment<FragmentSearchScreenBinding>() {
             viewModel.uiEvent.collect { event ->
                 when (event) {
                     is SearchScreenState.Success -> {
-                        adapter.items = event.data
+                        adapter?.items = event.data
                     }
                     else -> Unit
                 }

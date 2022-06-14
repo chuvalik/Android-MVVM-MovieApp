@@ -7,8 +7,8 @@ import com.example.feature_search_screen.domain.model.MovieDomain
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
 class MovieAdapter(
-    private val glide: RequestManager,
-    private val onGoToDetail: (MovieDomain) -> Unit
+    glide: RequestManager,
+    onGoToDetail: (MovieDomain) -> Unit
 ) : AsyncListDifferDelegationAdapter<DisplayableItem>(BaseDiffUtilItemCallback()) {
 
     init {

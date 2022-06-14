@@ -25,7 +25,7 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
 
     private val glide by inject<RequestManager>()
 
-    private lateinit var castAdapter: CastAdapter
+    private var castAdapter: CastAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +37,11 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
 
         observeMovieDetails()
 
-        binding.btnGoBack.setOnClickListener {
+        applyBinding()
+    }
+
+    private fun applyBinding() = binding.apply {
+        btnGoBack.setOnClickListener {
             findNavController().navigateUp()
         }
     }
@@ -51,24 +55,28 @@ class DetailScreenFragment : BaseFragment<FragmentDetailScreenBinding>() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.uiEvent.collect { event ->
                 when (event) {
-                    is DetailScreenEvent.Success -> bindData(movieDetailsDomain = event.data)
+                    is DetailScreenEvent.Success -> bindDataToUi(movieDetailsDomain = event.data)
                     is DetailScreenEvent.Failure -> Log.d("DetailTest", event.error)
+                    else -> {}
                 }
             }
         }
     }
 
-    private fun bindData(movieDetailsDomain: MovieDetailsDomain) {
+    private fun bindDataToUi(movieDetailsDomain: MovieDetailsDomain) {
+        with(binding) {
+            ratingBar.rating = movieDetailsDomain.imDbRating.toFloat() / 2
+            tvTitle.text = movieDetailsDomain.fullTitle
+            tvDuration.text = getString(R.string.movie_duration, movieDetailsDomain.runtimeMins)
+            tvGenre.text = movieDetailsDomain.genres
+            tvMovieRating.text = movieDetailsDomain.imDbRating
+            tvOverview.text = movieDetailsDomain.plot
+        }
+
         glide.load(movieDetailsDomain.image).into(binding.ivPoster)
         glide.load(movieDetailsDomain.image).into(binding.ivBackground)
-        binding.ratingBar.rating = movieDetailsDomain.imDbRating.toFloat() / 2
-        binding.tvTitle.text = movieDetailsDomain.fullTitle
-        binding.tvDuration.text = getString(R.string.movie_duration, movieDetailsDomain.runtimeMins)
-        binding.tvGenre.text = movieDetailsDomain.genres
-        binding.tvMovieRating.text = movieDetailsDomain.imDbRating
-        binding.tvOverview.text = movieDetailsDomain.plot
 
-        castAdapter.items = movieDetailsDomain.actorList
+        castAdapter?.items = movieDetailsDomain.actorList
     }
 
     override fun initBinding(

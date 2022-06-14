@@ -1,6 +1,4 @@
-package com.example.feature_main_screen.data.remote.dto.new_movie
-
-import com.example.feature_core.ui.DisplayableItem
+package com.example.feature_main_screen.data.remote.dto.trending
 
 data class TrendingMovieDto(
     val crew: String,

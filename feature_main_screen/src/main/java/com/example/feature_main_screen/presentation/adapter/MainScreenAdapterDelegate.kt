@@ -1,5 +1,6 @@
 package com.example.feature_main_screen.presentation.adapter
 
+import androidx.core.view.isVisible
 import com.bumptech.glide.RequestManager
 import com.example.feature_core.ui.DisplayableItem
 import com.example.feature_main_screen.databinding.AdapterMovieItemBinding
@@ -40,11 +41,20 @@ object MainScreenAdapterDelegate {
     ) {
         bind {
             glide.load(item.image).into(binding.ivMovie)
-            binding.tvTitle.text = item.fullTitle
-            binding.tvRating.text = item.imDbRating
+            binding.tvTitle.text =
+                if (item.fullTitle.length > 14) item.fullTitle.substring(0, 12) + "..."
+                else item.fullTitle
 
-            binding.ivMovie.setOnClickListener {
-                onGoToDetail(item)
+            // Available only for released movies
+            if (item.imDbRating.isNotBlank()) {
+                binding.tvRating.text = item.imDbRating
+                binding.tvRating.isVisible = true
+                binding.ivStar.isVisible = true
+                binding.tvComingSoon.isVisible = false
+
+                binding.ivMovie.setOnClickListener {
+                    onGoToDetail(item)
+                }
             }
         }
     }

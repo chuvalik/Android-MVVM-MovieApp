@@ -2,6 +2,8 @@ package com.example.feature_main_screen.presentation.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.feature_core.utils.Constants
+import com.example.feature_core.utils.DispatcherProvider
 import com.example.feature_core.utils.Resource
 import com.example.feature_main_screen.domain.use_cases.FetchComingSoonMoviesUseCase
 import com.example.feature_main_screen.domain.use_cases.FetchTrendingMoviesUseCase
@@ -16,7 +18,8 @@ import kotlinx.coroutines.launch
 
 class MainScreenViewModel(
     private val fetchTrendingMoviesUseCase: FetchTrendingMoviesUseCase,
-    private val fetchComingSoonMoviesUseCase: FetchComingSoonMoviesUseCase
+    private val fetchComingSoonMoviesUseCase: FetchComingSoonMoviesUseCase,
+    private val dispatchers: DispatcherProvider
 ) : ViewModel() {
 
     private val _uiTrendingMovieEvent =
@@ -33,7 +36,7 @@ class MainScreenViewModel(
     }
 
     private fun fetchTrendingMovies() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.io) {
             fetchTrendingMoviesUseCase().onEach { response ->
                 when (response) {
                     is Resource.Success -> {
@@ -41,15 +44,19 @@ class MainScreenViewModel(
                             _uiTrendingMovieEvent.value = TrendingMovieEvent.Success(data = data)
                         }
                     }
+                    is Resource.Error -> {
+                        _uiTrendingMovieEvent.value = TrendingMovieEvent.Failure(
+                            error = response.error ?: Constants.UNEXPECTED_ERROR_MESSAGE
+                        )
+                    }
                     is Resource.Loading -> _uiTrendingMovieEvent.value = TrendingMovieEvent.Loading
-                    else -> Unit
                 }
             }.launchIn(this)
         }
     }
 
     private fun fetchComingSoonMovies() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.io) {
             fetchComingSoonMoviesUseCase().onEach { response ->
                 when (response) {
                     is Resource.Success -> {
@@ -57,8 +64,12 @@ class MainScreenViewModel(
                             _uiComingSoonMovieEvent.value = ComingSoonMovieEvent.Success(data = data)
                         }
                     }
+                    is Resource.Error -> {
+                        _uiComingSoonMovieEvent.value = ComingSoonMovieEvent.Failure(
+                            error = response.error ?: Constants.UNEXPECTED_ERROR_MESSAGE
+                        )
+                    }
                     is Resource.Loading -> _uiComingSoonMovieEvent.value = ComingSoonMovieEvent.Loading
-                    else -> Unit
                 }
             }.launchIn(this)
         }

@@ -17,7 +17,7 @@
             android:id="@+id/ivMovie"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             tools:src="@drawable/movie_poster" />
 
         <TextView
