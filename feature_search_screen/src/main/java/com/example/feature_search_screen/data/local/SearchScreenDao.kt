@@ -5,12 +5,11 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.feature_search_screen.data.local.entity.MovieEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SearchScreenDao {
 
-    @Query("SELECT * FROM search_screen_local_db WHERE title LIKE '%' || :query || '%'")
+    @Query("SELECT * FROM search_screen_local_db WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%'")
     suspend fun fetchMovies(query: String): List<MovieEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
