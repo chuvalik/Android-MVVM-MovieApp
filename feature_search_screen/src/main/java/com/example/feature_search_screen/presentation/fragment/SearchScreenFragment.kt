@@ -69,9 +69,7 @@ class SearchScreenFragment : BaseFragment<FragmentSearchScreenBinding>() {
                     }
                     is SearchScreenState.Loading -> {
                         val time = measureTimeMillis {
-                            Log.d("TesstLoadingState", "loading")
                         }
-                        Log.d("TesstLoadingState", "$time")
                         binding.progressBar.isVisible = true
                     }
                     is SearchScreenState.Failure -> {
