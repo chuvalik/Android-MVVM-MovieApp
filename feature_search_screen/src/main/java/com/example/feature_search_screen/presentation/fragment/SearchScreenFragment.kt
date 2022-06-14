@@ -2,9 +2,11 @@ package com.example.feature_search_screen.presentation.fragment
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
@@ -18,6 +20,7 @@ import com.example.feature_search_screen.presentation.view_model.model.SearchScr
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.system.measureTimeMillis
 
 
 class SearchScreenFragment : BaseFragment<FragmentSearchScreenBinding>() {
@@ -61,6 +64,18 @@ class SearchScreenFragment : BaseFragment<FragmentSearchScreenBinding>() {
                 when (event) {
                     is SearchScreenState.Success -> {
                         adapter?.items = event.data
+                        binding.recyclerView.isVisible = true
+                        binding.progressBar.isVisible = false
+                    }
+                    is SearchScreenState.Loading -> {
+                        val time = measureTimeMillis {
+                            Log.d("TesstLoadingState", "loading")
+                        }
+                        Log.d("TesstLoadingState", "$time")
+                        binding.progressBar.isVisible = true
+                    }
+                    is SearchScreenState.Failure -> {
+                        binding.progressBar.isVisible = false
                     }
                     else -> Unit
                 }

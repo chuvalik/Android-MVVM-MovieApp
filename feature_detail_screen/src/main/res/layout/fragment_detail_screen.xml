@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             style="@style/Body"
-            android:lineSpacingExtra="4dp"
+            android:lineSpacingExtra="6dp"
             app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
             app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
             app:layout_constraintTop_toBottomOf="@+id/tvOverviewConst"
