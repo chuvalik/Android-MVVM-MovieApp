@@ -9,10 +9,7 @@ import com.example.feature_search_screen.domain.use_case.FetchMoviesUseCase
 import com.example.feature_search_screen.presentation.view_model.model.SearchScreenState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class SearchScreenViewModel(
