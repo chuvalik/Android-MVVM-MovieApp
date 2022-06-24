@@ -17,8 +17,8 @@ class SearchScreenViewModel(
     private val dispatchers: DispatcherProvider
 ) : ViewModel() {
 
-    private val _uiEvent = MutableStateFlow<SearchScreenState>(SearchScreenState.Empty)
-    val uiEvent get() = _uiEvent.asStateFlow()
+    private val _searchEvent = MutableStateFlow<SearchScreenState>(SearchScreenState.Empty)
+    val searchEvent get() = _searchEvent.asStateFlow()
 
     private var searchJob: Job? = null
 
@@ -30,14 +30,14 @@ class SearchScreenViewModel(
                 when (result) {
                     is Resource.Success -> {
                         result.data?.let { data ->
-                            _uiEvent.value = SearchScreenState.Success(data = data)
+                            _searchEvent.value = SearchScreenState.Success(data = data)
                         }
                     }
                     is Resource.Loading -> {
-                        _uiEvent.value = SearchScreenState.Loading
+                        _searchEvent.value = SearchScreenState.Loading
                     }
                     is Resource.Error -> {
-                        _uiEvent.value = SearchScreenState.Failure(
+                        _searchEvent.value = SearchScreenState.Failure(
                             error = result.error ?: Constants.UNEXPECTED_ERROR_MESSAGE
                         )
                     }

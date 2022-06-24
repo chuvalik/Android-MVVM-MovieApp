@@ -2,7 +2,6 @@ package com.example.feature_search_screen.presentation.fragment
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,25 +59,27 @@ class SearchScreenFragment : BaseFragment<FragmentSearchScreenBinding>() {
 
     private fun observeUi() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.uiEvent.collect { event ->
+            viewModel.searchEvent.collect { event ->
                 when (event) {
                     is SearchScreenState.Success -> {
                         adapter?.items = event.data
                         binding.recyclerView.isVisible = true
-                        binding.progressBar.isVisible = false
+                        showProgressBar(false)
                     }
                     is SearchScreenState.Loading -> {
-                        val time = measureTimeMillis {
-                        }
-                        binding.progressBar.isVisible = true
+                        showProgressBar(true)
                     }
                     is SearchScreenState.Failure -> {
-                        binding.progressBar.isVisible = false
+                        showProgressBar(true)
                     }
                     else -> Unit
                 }
             }
         }
+    }
+
+    private fun showProgressBar(isVisible: Boolean) {
+        binding.progressBar.isVisible = isVisible
     }
 
     override fun initBinding(
